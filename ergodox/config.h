@@ -1,18 +1,13 @@
-#ifndef CONFIG_USER_H
-#define CONFIG_USER_H
+#ifndef CONFIG_BERFARAH_H
+#define CONFIG_BERFARAH_H
+
+#include QMK_KEYBOARD_CONFIG_H
+
+#undef TAPPING_TERM
+#define TAPPING_TERM 150
+
+#define RGBLIGHT_EFFECT_BREATHE_CENTER 1.4
+#define RGBLIGHT_EFFECT_BREATHE_MAX 150
+
+#undef IGNORE_MOD_TAP_INTERRUPT
 #endif
-
-#include "../../config.h"
-
-#ifdef NO_DEBUG
-  #undef NO_DEBUG
-#endif
-
-#ifdef IGNORE_MOD_TAP_INTERRUPT
-  #undef IGNORE_MOD_TAP_INTERRUPT
-#endif
-/* #define FORCE_NKRO */
-/* #define PREVENT_STUCK_MODIFIERS */
-
-/* #undef TAPPING_TERM */
-/* #undef IGNORE_MOD_TAP_INTERRUPT */
