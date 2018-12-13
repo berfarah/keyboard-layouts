@@ -7,6 +7,7 @@
 enum keyboard_layers {
   QWERTY = 0, // default layer
   NUMS,     // numbers + symbols
+  WINDOW,   // window management
   FKEYS,
   MOVE,     // vim-like movement
   AFK,
@@ -25,6 +26,11 @@ enum custom_keycodes {
 
 #define VIM_B LALT(KC_LEFT)
 #define VIM_W LALT(KC_RIGHT)
+
+#define WIN_L LGUI(LALT(KC_LEFT))
+#define WIN_U LGUI(LALT(KC_UP))
+#define WIN_D LGUI(LALT(KC_DOWN))
+#define WIN_R LGUI(LALT(KC_RIGHT))
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* Keymap 0: Basic layer
@@ -62,11 +68,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                  KC_SPC,KC_LGUI,KC_LALT,
 
           // right hand
-          BF_AFK,      KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,            KC_NO,
-          KC_RBRC,     KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,             KC_BSLS,
-                       KC_H,   KC_J,   KC_K,   KC_L,   LT(MOVE, KC_SCLN),KC_QUOT,
-          S(KC_0),     KC_N,   KC_M,   KC_COMM,KC_DOT, KC_SLSH,          KC_RSFT,
-                               BF_NUMS,KC_NO,  CTL_T(KC_ESC),KC_F19,     MEH_T(KC_NO),
+          BF_AFK,      KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,              KC_NO,
+          KC_RBRC,     KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,               KC_BSLS,
+                       KC_H,   KC_J,   KC_K,   KC_L,   LT(MOVE, KC_SCLN),  KC_QUOT,
+          S(KC_0),     KC_N,   KC_M,   KC_COMM,KC_DOT, LT(WINDOW, KC_SLSH),KC_RSFT,
+                               BF_NUMS,KC_NO,  CTL_T(KC_ESC),KC_F19,       MEH_T(KC_NO),
           KC_MNXT,KC_MPLY,
           KC_MPRV,
           KC_LALT,KC_BSPC,KC_ENT
@@ -196,6 +202,49 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                 KC_LEFT,      KC_DOWN,      KC_UP,         KC_RGHT,       KC_TRNS,KC_TRNS,
         KC_TRNS,KC_TRNS,      KC_TRNS,      KC_TRNS,       KC_TRNS,       KC_TRNS,KC_TRNS,
                               KC_TRNS,      KC_TRNS,       KC_TRNS,       KC_TRNS,KC_TRNS,
+        KC_TRNS,KC_TRNS,
+        KC_TRNS,
+        KC_TRNS,KC_TRNS,KC_TRNS
+  ),
+
+  /* Keymap 3: Window Management Layer
+  *
+  * ,--------------------------------------------------.           ,--------------------------------------------------.
+  * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
+  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
+  * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
+  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
+  * |        |      |      |      |      |      |------|           |------|   ←  |   ↓  |   ↑  |   →  |      |        |
+  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
+  * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
+  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
+  *   |      |      |      |      |      |                                       |      |      |      |      |      |
+  *   `----------------------------------'                                       `----------------------------------'
+  *                                        ,-------------.       ,-------------.
+  *                                        |      |      |       |      |      |
+  *                                 ,------|------|------|       |------+------+------.
+  *                                 |      |      |      |       |      |      |      |
+  *                                 |      |      |------|       |------|      |      |
+  *                                 |      |      |      |       |      |      |      |
+  *                                 `--------------------'       `--------------------'
+  */
+  [WINDOW] = LAYOUT_ergodox(
+        // left hand
+        KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,
+        KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,
+        KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,
+        KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,
+        KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,
+                                        KC_TRNS,KC_TRNS,
+                                                KC_TRNS,
+                                KC_TRNS,KC_TRNS,KC_TRNS,
+
+        // right hand
+        KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,
+        KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,
+                WIN_L,  WIN_D,  WIN_U,  WIN_R,  KC_TRNS,KC_TRNS,
+        KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,
+                        KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,
         KC_TRNS,KC_TRNS,
         KC_TRNS,
         KC_TRNS,KC_TRNS,KC_TRNS
