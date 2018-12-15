@@ -23,7 +23,7 @@ enum custom_keycodes {
 // Toggle to NUMS layer
 #define KC_NUMS MO(_NUMS)
 // Toggle to FNKEYS layer
-#define KC_FNKY MO(_NUMS)
+#define KC_FNKY MO(_FKEYS)
 // Tap: ;, Hold: Toggle to VIM movement layer
 #define KC_VSCN LT(_MOVE, KC_SCLN)
 // Tap: /, Hold: Toggle to Window movement layer
@@ -43,6 +43,8 @@ enum custom_keycodes {
 #define KC_WINU LGUI(LALT(KC_UP))
 #define KC_WIND LGUI(LALT(KC_DOWN))
 #define KC_WINR LGUI(LALT(KC_RIGHT))
+#define KC_CTAB LCTL(KC_TAB)
+#define KC_LGUW LGUI(KC_W)
 
 #define KC_RST RESET
 #define KC_DBUG DEBUG
@@ -73,11 +75,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   // LAYER 2: VIM movement
   //,----+----+----+----+----+----+----.     ,----+----+----+----+----+----+----.
-  //     |    |WORD|    |    |    |    |     |    |⌘ ← |⌥ ← |⌥ → |⌘ → |    |    |
+  //     |    |WORD|    |    |CTAB|    |     |    |    |PGUP|    | ENT|    |    |
   //|----+----+----+----+----+----+----|     |----+----+----+----+----+----+----|
-  //     |    |HOME|PGUP|PGDW|END |    |     |    | ←  | ↓  | ↑  |  → |    |    |
+  //     |    |    |PGDN|    |    |    |     |    | ←  | ↓  | ↑  |  → |    |    |
   //|----+----+----+----+----+----+----|     |----+----+----+----+----+----+----|
-  //     |    |    |    |    |BWRD|    |     |    |    |    |    |    |    |    |
+  //     |    |LGUW|    |    |BWRD|    |     |    |    |    |    |    |    |    |
   //|----+----+----+----+----+----+----.     .----+----+----+----+----+----+----|
   //     |    |    |    |    |    |               \    \    \    \    \    \    |
   //`----+----+----+--+-+----/----/               \----\----+----+----+----+----'
@@ -119,11 +121,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_MOVE] = LAYOUT_kc(
     //,----+----+----+----+----+----+----.     ,----+----+----+----+----+----+----.
-         _ ,  _ ,VIMW, _  , _  , _  , _  ,        _ ,LLFT,VIMB,VIMW,LRHT,  _ ,  _ ,
+         _ ,  _ ,VIMW, _  , _  ,CTAB, _  ,        _ , _  ,PGUP, _  , ENT,  _ ,  _ ,
     //|----+----+----+----+----+----+----|     |----+----+----+----+----+----+----|
-         _ , _  , _  , _  , _  , _  , _  ,        _ ,LEFT,DOWN, UP ,RGHT,  _ ,  _ ,
+         _ , _  , _  ,PGDN, _  , _  , _  ,        _ ,LEFT,DOWN, UP ,RGHT,  _ ,  _ ,
     //|----+----+----+----+----+----+----|     |----+----+----+----+----+----+----|
-         _ ,  _ ,  _ ,  _ ,  _ ,VIMB, _  ,        _ ,  _ ,  _ ,  _ ,  _ ,  _ ,  _ ,
+         _ ,  _ ,LGUW,  _ ,  _ ,VIMB, _  ,        _ ,  _ ,  _ ,  _ ,  _ ,  _ ,  _ ,
     //|----+----+----+----+----+----+----.     .----+----+----+----+----+----+----|
          _ ,  _ ,  _ ,  _ ,  _ ,  _ ,                  _ ,  _ ,  _ ,  _ ,  _ ,  _
     //`----+----+----+--+-+----/----/               \----\----+----+----+----+----'
